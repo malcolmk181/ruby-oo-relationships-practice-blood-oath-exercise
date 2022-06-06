@@ -15,8 +15,12 @@ class Follower
         self.class.all << self
     end
 
-    def cults
+    def oaths
         BloodOath.all.select {|oath| oath.follower == self }
+    end
+
+    def cults
+        oaths.map(&:cult)
     end
 
     def join_cult(cult)

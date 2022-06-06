@@ -26,7 +26,7 @@ class Cult
     end
 
     def cult_population
-        cult_members.count
+        members.count
     end
 
     def self.find_by_name(name)
@@ -38,6 +38,6 @@ class Cult
     end
 
     def self.find_by_founding_year(year)
-        all.select {|cult| cult.year == year }
+        all.select {|cult| cult.founding_year == year }
     end
 end

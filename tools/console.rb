@@ -19,6 +19,15 @@ ryan.join_cult(ydn)
 
 apple.recruit_follower(toby)
 
+old_people = Cult.new("The Old Ones", "Yale", "No young'ns", 2000, 60)
+toby.join_cult(old_people)
+
+toby.join_cult(yale)
+
+jimbo = Follower.new("Jim", 70, "I am old.")
+jimbo.join_cult(yale)
+old_people.recruit_follower(jimbo)
+
 binding.pry
 
 puts "Mwahahaha!" # just in case pry is buggy and exits

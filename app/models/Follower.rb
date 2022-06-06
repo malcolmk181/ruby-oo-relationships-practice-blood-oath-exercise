@@ -24,7 +24,7 @@ class Follower
     end
 
     def join_cult(cult)
-        BloodOath.new(self, cult)
+        cult.recruit_follower(self)
     end
 
     def self.of_a_certain_age(age)
@@ -42,4 +42,12 @@ class Follower
     def self.top_ten
         all.max(10) {|f1, f2| f1.cults.count <=> f2.cults.count }
     end
+
+    def fellow_cult_members
+        lst = []
+        cults.each{|cult| lst.push(*cult.followers) }
+        lst.delete(self)
+        lst.uniq
+    end
+    
 end

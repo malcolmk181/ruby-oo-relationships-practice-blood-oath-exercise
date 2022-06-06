@@ -21,12 +21,12 @@ class Cult
         BloodOath.new(follower, self)
     end
 
-    def members
-        BloodOath.all.select {|oath| oath.cult == self }
+    def followers
+        BloodOath.all.select {|oath| oath.cult == self }.map(&:follower)
     end
 
     def cult_population
-        members.count
+        followers.count
     end
 
     def self.find_by_name(name)
@@ -39,5 +39,32 @@ class Cult
 
     def self.find_by_founding_year(year)
         all.select {|cult| cult.founding_year == year }
+    end
+
+    def average_age
+        followers.map(&:age).sum / cult_population.to_f
+    end
+
+    def my_followers_mottos
+        puts followers.map(&:life_motto)
+    end
+
+    def self.least_popular
+        all.min {|cult1, cult2| cult1.cult_population <=> cult2.cult_population}
+    end
+
+    def self.most_common_location
+        # array of locations (including duplicates)
+        a = all.map(&:location)
+
+        h = Hash.new
+
+        # accumulate the locations into a hash,
+        # where the keys are the locations, and the values
+        # are the counts
+        a.each {|location| !h[location].nil? ? h[location] += 1 : h[location] = 1 }
+
+        # max by the values, and return the key
+        h.max_by{|location, count| count }[0]
     end
 end

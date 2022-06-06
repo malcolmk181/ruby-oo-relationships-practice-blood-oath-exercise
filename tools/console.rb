@@ -8,11 +8,13 @@ end
 # so they will be available to test and play around with in your console
 
 ydn = Cult.new("YDN", "Yale", "To criticize Yale", 1899)
+yale = Cult.new("Yale", "Yale", "To make money", 1701)
 apple = Cult.new("Apple", "CA", "For privacy", 1999)
 
 ryan = Follower.new("Ryan", 21, "For Hong Kong")
 toby = Follower.new("Toby", 34, "ewwww green texts")
 
+yale.recruit_follower(ryan)
 ryan.join_cult(ydn)
 
 apple.recruit_follower(toby)
